@@ -38,34 +38,39 @@ public class Entry {
 
 
     public Entry(List<String> elems) {
-        this.proxy_host = elems.get(0);
-        this.upstream = elems.get(1);
-        this.status = elems.get(2) != null ? Integer.parseInt(elems.get(2)) : -1;
-        this.request_time = elems.get(3) != null ? Float.parseFloat(elems.get(3)) : 0;
-        this.upstream_status = elems.get(4);
-        this.upstream_response_time = elems.get(5);
-        this.upstrea_address = elems.get(6);
-        this.client_ip = elems.get(7);
-        this.request_length = elems.get(8) != null ? Long.parseLong(elems.get(8)) : 0;
-        this.bytes_sent = elems.get(9) != null ? Long.parseLong(elems.get(9)) : 0;
-        this.request_method = elems.get(10);
-        this.scheme = elems.get(11);
-        this.request_uri = elems.get(12);
-        this.http_referer = elems.get(13);
-        this.nginx_host = elems.get(14);
-        this.http_host = elems.get(15);
-        this.http_user_agent = elems.get(16);
-        this.request_body = elems.get(17);
-        this.http_x_ssl_early_termination = elems.get(18);
-        this.http_cookie = elems.get(19);
-        this.response_headers = elems.get(20);
-        this.request_headers = elems.get(21);
-        this.proxy_response_headers = elems.get(22);
-        this.proxy_request_headers = elems.get(23);
+//        System.out.println(elems.size());
+//        for (String elem : elems){
+//            System.out.println("elem = " + elem);
+//        }
+        this.time = elems.get(0);
+        this.proxy_host = elems.get(1);
+        this.upstream = elems.get(2);
+        this.status = elems.get(3) != null ? Integer.parseInt(elems.get(3)) : -1;
+        this.request_time = elems.get(4) != null ? Float.parseFloat(elems.get(4)) : 0;
+        this.upstream_status = elems.get(5);
+        this.upstream_response_time = elems.get(6);
+        this.upstrea_address = elems.get(7);
+        this.client_ip = elems.get(8);
+        this.request_length = elems.get(9) != null ? Long.parseLong(elems.get(9)) : 0;
+        this.bytes_sent = elems.get(10) != null ? Long.parseLong(elems.get(10)) : 0;
+        this.request_method = elems.get(11);
+        this.scheme = elems.get(12);
+        this.request_uri = elems.get(13);
+        this.http_referer = elems.get(14);
+        this.nginx_host = elems.get(15);
+        this.http_host = elems.get(16);
+        this.http_user_agent = elems.get(17);
+        this.request_body = elems.get(18);
+        this.http_x_ssl_early_termination = elems.get(19);
+        this.http_cookie = elems.get(20);
+        this.response_headers = elems.get(21);
+        this.request_headers = elems.get(22);
+        this.proxy_response_headers = elems.get(23);
+//        this.proxy_request_headers = elems.get(24);
         this.http_x_public = elems.get(24);
         this.ds = elems.get(25);
-        this.nginx_pool = elems.get(26);
-        this.x_request_id = elems.get(27);
+//        this.nginx_pool = elems.get(27);
+        this.x_request_id = elems.get(26);
     }
 
     public String getMinute() {

@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class Process {
 
+    private String actualMinute;
     private Map<String, Map<String, Statistics>> map= new HashMap<String, Map<String, Statistics>>();
 
     public void readFile(){
@@ -12,8 +13,9 @@ public class Process {
     }
 
     public Entry understandLine(String line){
-        List<String> elems= new ArrayList<String>((line.split(" ")).length);
-        Collections.addAll(elems, line.split(" "));
+        line= line.replaceAll(", ", ",");
+        List<String> elems= new ArrayList<String>((line.split("\\s+")).length);
+        Collections.addAll(elems, line.split("\\s+"));
         for (String elem: elems){
             if(elem.equals("-")) elem = null;
         }
@@ -40,4 +42,27 @@ public class Process {
         }
     }
 
+    public void processLine(String line) {
+        String minute= line.split("\\s+")[0];
+        if(actualMinute == null){
+            actualMinute= minute;
+        }
+        if(!actualMinute.equals(minute)) {
+            actualMinute= minute;
+            saveInDBAndWriteInFile();
+            map= new HashMap<String, Map<String, Statistics>>();
+        }
+        saveInMap(understandLine(line));
+
+    }
+
+    private void saveInDBAndWriteInFile() {
+        // write each line of map in text
+        for (Map<String, Statistics> statisticsMap: map.values()){
+            for (Statistics statistics: statisticsMap.values()){
+//                String lineToWrite= statistics.getLine();
+//                System.out.println("lineToWrite = " + lineToWrite);
+            }
+        }
+    }
 }

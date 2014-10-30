@@ -45,18 +45,28 @@ public class Statistics {
         totalRequestTime += entry.getRequest_time();
         totalRequestBytes += entry.getRequest_length();
         totalBytesSent += entry.getBytes_sent();
-        if (entry.getRequest_time() < 10) req10++;
-        else if (entry.getRequest_time() < 50){
+        if (entry.getRequest_time() < 0.01) req10++;
+        else if (entry.getRequest_time() < 0.050){
             req50++;
-        }else if (entry.getRequest_time() < 100){
+        }else if (entry.getRequest_time() < 0.100){
             req100++;
-        }else if (entry.getRequest_time() < 300){
+        }else if (entry.getRequest_time() < 0.300){
             req300++;
-        }else if (entry.getRequest_time() < 1000){
+        }else if (entry.getRequest_time() < 1.000){
             req1000++;
-        }else if (entry.getRequest_time() < 10000){
+        }else if (entry.getRequest_time() < 10.000){
             req10000++;
         }
 
+    }
+
+    public String getLine() {
+        StringBuilder builder= new StringBuilder(minute).append("\t").append(nginx).append("\t").append(ipFrom).
+                append("\t").append(ipTo).append("\t").append(status).append("\t").append(totalOcurrencies).
+                append("\t").append(totalRequestTime).append("\t").append(totalRequestBytes).append("\t").
+                append(totalBytesSent).append("\t").append(req10).append("\t").append(req50).append("\t").
+                append(req100).append("\t").append(req300).append("\t").append(req1000).
+                append("\t").append(req10000);
+        return builder.toString();
     }
 }
