@@ -20,12 +20,12 @@ public class Statistics {
     private int req10000;
 
 
-    public Statistics(Entry entry){
-        this.ipFrom= entry.getIpFrom();
-        this.ipTo= entry.getIpTo();
-        this.minute= entry.getMinute();
-        this.nginx= entry.getNginx();
-        this.status= entry.getStatus();
+    public Statistics(EntryData entryData){
+        this.ipFrom= entryData.getIpFrom();
+        this.ipTo= entryData.getIpTo();
+        this.minute= entryData.getMinute();
+        this.nginx= entryData.getNginx();
+        this.status= entryData.getStatus();
         this.totalOcurrencies = 0;
         this.totalRequestBytes = 0;
         this.totalRequestTime = 0;
@@ -38,23 +38,23 @@ public class Statistics {
         this.req10000 = 0;
     }
 
-    public void update(Entry entry) {
+    public void update(EntryData entryData) {
         if(true){ //todo: ver que quiere decir con q coincida el status
             totalOcurrencies++;
         }
-        totalRequestTime += entry.getRequest_time();
-        totalRequestBytes += entry.getRequest_length();
-        totalBytesSent += entry.getBytes_sent();
-        if (entry.getRequest_time() < 0.01) req10++;
-        else if (entry.getRequest_time() < 0.050){
+        totalRequestTime += entryData.getRequest_time();
+        totalRequestBytes += entryData.getRequest_length();
+        totalBytesSent += entryData.getBytes_sent();
+        if (entryData.getRequest_time() < 0.01) req10++;
+        else if (entryData.getRequest_time() < 0.050){
             req50++;
-        }else if (entry.getRequest_time() < 0.100){
+        }else if (entryData.getRequest_time() < 0.100){
             req100++;
-        }else if (entry.getRequest_time() < 0.300){
+        }else if (entryData.getRequest_time() < 0.300){
             req300++;
-        }else if (entry.getRequest_time() < 1.000){
+        }else if (entryData.getRequest_time() < 1.000){
             req1000++;
-        }else if (entry.getRequest_time() < 10.000){
+        }else if (entryData.getRequest_time() < 10.000){
             req10000++;
         }
 

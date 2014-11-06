@@ -1,68 +1,130 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by joaquin on 30/10/14.
  */
-public class Process {
+public class Process extends Thread {
 
-    private String actualMinute;
-    private Map<String, Map<String, Statistics>> map= new HashMap<String, Map<String, Statistics>>();
+    private Structure structure;
+    private Buffer buffer;
 
-    public void readFile(){
-
+    public Process(Buffer buffer) {
+        structure = Structure.getInstance();
+        this.buffer = buffer;
     }
 
-    public Entry understandLine(String line){
-        line= line.replaceAll(", ", ",");
-        List<String> elems= new ArrayList<String>((line.split("\\s+")).length);
-        Collections.addAll(elems, line.split("\\s+"));
-        for (String elem: elems){
-            if(elem.equals("-")) elem = null;
+    @Override
+    public void run() {
+//        while (true) {
+//            try {
+            String line = null;
+        while ((line = buffer.processLineFromBuffer()) != null)
+                processLine(line);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+    }
+
+    public EntryData understandLine(String line) {
+        line = line.replaceAll(", ", ",");
+        String[] list= line.split("\\s+");
+        List<String> elems = new ArrayList<String>(list.length);
+        Collections.addAll(elems, list);
+        for (String elem : elems) {
+            if (elem.equals("-")) elem = null;
         }
-        return new Entry(elems);
+        if (elems.size() == 1) {
+            System.out.println(System.currentTimeMillis());
+            System.out.println(structure.getCounter());
+            System.out.println("line = " + line);
+        }
+        return new EntryData(elems);
     }
 
 
-    public void saveInMap(Entry entry) {
-        Map<String, Statistics> statisticsMap = map.get(entry.getIpFrom());
-        if (statisticsMap == null) {
-            statisticsMap= new HashMap<String, Statistics>();
-            Statistics statistics= new Statistics(entry);
-            statistics.update(entry);
-            statisticsMap.put(entry.getIpTo(), statistics);
-            map.put(entry.getIpFrom(), statisticsMap);
+    public void saveInConcurrentMap(EntryData entryData) {
+        structure.increment();
+        ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map = structure.getMap();
+        ConcurrentMap<Integer, Statistics> statisticsConcurrentMap = map.get(entryData.getIpFromHashed());
+        if (statisticsConcurrentMap == null) {
+            statisticsConcurrentMap = new ConcurrentHashMap<Integer, Statistics>();
+            Statistics statistics = new Statistics(entryData);
+            statistics.update(entryData);
+            statisticsConcurrentMap.put(entryData.getIpToHashed(), statistics);
+            map.put(entryData.getIpFromHashed(), statisticsConcurrentMap);
         } else {
-            Statistics statistics = statisticsMap.get(entry.getIpTo());
-            if(statistics == null){
-                statistics= new Statistics(entry);
+            Statistics statistics = statisticsConcurrentMap.get(entryData.getIpToHashed());
+            if (statistics == null) {
+                statistics = new Statistics(entryData);
             }
-            statistics.update(entry);
-            statisticsMap.put(entry.getIpTo(), statistics);
-            map.put(entry.getIpFrom(), statisticsMap);
+            statistics.update(entryData);
+            statisticsConcurrentMap.put(entryData.getIpToHashed(), statistics);
+            map.put(entryData.getIpFromHashed(), statisticsConcurrentMap);
+            structure.setMap(map);
         }
     }
 
-    public void processLine(String line) {
-        String minute= line.split("\\s+")[0];
-        if(actualMinute == null){
-            actualMinute= minute;
+    public List<String> splitString(String wordToSplit, char splitBy){
+        List<String> list = new ArrayList<String>();
+        int pos = 0, end;
+        while ((end = wordToSplit.indexOf(splitBy, pos)) >= 0) {
+            list.add(wordToSplit.substring(pos, end));
+            pos = end + 1;
         }
-        if(!actualMinute.equals(minute)) {
-            actualMinute= minute;
-            saveInDBAndWriteInFile();
-            map= new HashMap<String, Map<String, Statistics>>();
-        }
-        saveInMap(understandLine(line));
+        return list;
+    }
 
+    public String getMinute(String line){
+        int pos= 0;
+        return line.substring(pos, line.indexOf(' ', pos));
+    }
+
+
+    public void processLine(final String line) {
+        String minute = line.split("\\s+")[0];
+//        String minute = line.split("\\s+")[0];
+        if (structure.getActualMinute() == null) {
+            changeMinute(minute);
+        }
+        if (!structure.getActualMinute().equals(minute)) {
+            changeMinute(minute);
+            saveInDBAndWriteInFile();
+            structure.setMap(new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>());
+        }
+        saveInConcurrentMap(understandLine(line));
+    }
+
+    private void changeMinute(String minute) {
+        structure.setActualMinute(minute);
     }
 
     private void saveInDBAndWriteInFile() {
-        // write each line of map in text
-        for (Map<String, Statistics> statisticsMap: map.values()){
-            for (Statistics statistics: statisticsMap.values()){
-//                String lineToWrite= statistics.getLine();
-//                System.out.println("lineToWrite = " + lineToWrite);
+        Iterator<ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>>> iterator = ((structure.getMap()).entrySet()).iterator();
+        // write each line of structure.getConcurrentMap() in text
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("output.log", "UTF-8");
+            while (iterator.hasNext()) {
+                ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>> entry = iterator.next();
+                Iterator<ConcurrentMap.Entry<Integer, Statistics>> statIt = (entry.getValue().entrySet()).iterator();
+                while (statIt.hasNext()) {
+                    ConcurrentMap.Entry<Integer, Statistics> statEntry = statIt.next();
+                    String lineToWrite = statEntry.getValue().getLine();
+                    writer.println(lineToWrite);
+                }
             }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -9,24 +9,27 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
-//        System.out.println("args = " + args[0]);
-        Process process= new Process();
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String line = null;
-        int counter= 0;
-        try {
-            while( (line = input.readLine()) != null ) {
-//                System.out.println(line);
-                process.processLine(line);
-                counter++;
-                System.out.println("counter = " + counter);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        routine(input);
+//        todo: 50mil lineas en 2 segundos masomenos, tengo q hacer que despues del cat siga con tail -f , guardarlo en base
+        //todo: de datos, ver q no reemplaze el archivo sino q le agregue lineas, y despues ver de hacerlo un poco mas eficiente
+        //todo: por ahi un buffer para escribir, hacer vista??
+    }
+
+    public static void  routine(BufferedReader input){
+        System.out.println("Hello World!");
+        System.out.println("start:    "+System.currentTimeMillis());
+//        System.out.println("args = " + args[0]);
+        Buffer buffer= new Buffer(1000000);
+        Reader reader= new Reader(buffer, input);
+        reader.start();
+        for (int i = 0; i < 19; i++) {
+            Process process= new Process(buffer);
+            process.start();
         }
+
     }
-    }
+}
     //metodo1, primero tiene q leer una linea como las del access log y entenderla, osea sacar datos de una linea
     //metodo2, una vez traducida la linea, se fija de q minuto es,
     //                              si es del minuto q se esta leyendo, se guarda en el mapa con las est

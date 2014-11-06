@@ -3,7 +3,7 @@ import java.util.List;
 /**
  * Created by joaquin on 30/10/14.
  */
-public class Entry {
+public class EntryData {
 
     private String time;
     private String proxy_host;
@@ -37,11 +37,7 @@ public class Entry {
     private String x_request_id ;
 
 
-    public Entry(List<String> elems) {
-//        System.out.println(elems.size());
-//        for (String elem : elems){
-//            System.out.println("elem = " + elem);
-//        }
+    public EntryData(List<String> elems) {
         this.time = elems.get(0);
         this.proxy_host = elems.get(1);
         this.upstream = elems.get(2);
@@ -106,4 +102,11 @@ public class Entry {
     }
 
 
+    public int getIpToHashed() {
+        return getIpTo().hashCode();
+    }
+
+    public int getIpFromHashed() {
+        return getIpFrom().hashCode();
+    }
 }
