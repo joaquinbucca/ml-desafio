@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="scala">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/akka-actors.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/diffutils.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/jline.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-actors-migration.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-actors.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-library.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-parser-combinators.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-partest.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-reflect.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-swing.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-xml.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scalap.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/test-interface.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/typesafe-config.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
