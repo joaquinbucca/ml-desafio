@@ -47,6 +47,10 @@ public class EntryData {
         this.upstream_response_time = elems.get(6);
         this.upstrea_address = elems.get(7);
         this.client_ip = elems.get(8);
+        int index= client_ip.lastIndexOf(",");
+        if(index != -1){
+            this.client_ip= client_ip.substring(index+1, client_ip.length());
+        }
         this.request_length = elems.get(9) != null ? Long.parseLong(elems.get(9)) : 0;
         this.bytes_sent = elems.get(10) != null ? Long.parseLong(elems.get(10)) : 0;
         this.request_method = elems.get(11);

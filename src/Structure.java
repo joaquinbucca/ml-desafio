@@ -8,10 +8,9 @@ public class Structure {
 
     private static Structure structure;
 
-
-    private static int counter;
-    private static String actualMinute;
-    private static ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map= new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>(10000000);
+    private int counter;
+    private String actualMinute;
+    private ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map= new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>();
 
     private Structure(){
         if (structure != null){
@@ -26,12 +25,13 @@ public class Structure {
         return structure;
     }
 
+
     public  String getActualMinute(){
         return actualMinute;
     }
 
     public void setActualMinute(String actualMinut){
-        Structure.actualMinute= actualMinut;
+        this.actualMinute= actualMinut;
     }
 
     public ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> getMap() {
@@ -47,6 +47,6 @@ public class Structure {
     }
 
     public void setMap(ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map) {
-        Structure.map = map;
+        this.map = map;
     }
 }

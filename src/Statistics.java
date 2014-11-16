@@ -61,12 +61,6 @@ public class Statistics {
     }
 
     public String getLine() {
-        StringBuilder builder= new StringBuilder(minute).append("\t").append(nginx).append("\t").append(ipFrom).
-                append("\t").append(ipTo).append("\t").append(status).append("\t").append(totalOcurrencies).
-                append("\t").append(totalRequestTime).append("\t").append(totalRequestBytes).append("\t").
-                append(totalBytesSent).append("\t").append(req10).append("\t").append(req50).append("\t").
-                append(req100).append("\t").append(req300).append("\t").append(req1000).
-                append("\t").append(req10000);
-        return builder.toString();
+        return minute + "\t" + nginx + "\t" + ipFrom + "\t" + ipTo + "\t" + status + "\t" + totalOcurrencies + "\t" + totalRequestTime + "\t" + totalRequestBytes + "\t" + totalBytesSent + "\t" + req10 + "\t" + req50 + "\t" + req100 + "\t" + req300 + "\t" + req1000 + "\t" + req10000;
     }
 }

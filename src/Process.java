@@ -1,7 +1,10 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -34,6 +37,7 @@ public class Process extends Thread {
 
     public EntryData understandLine(String line) {
         line = line.replaceAll(", ", ",");
+//        System.out.println("line = " + line);
         String[] list= line.split("\\s+");
         List<String> elems = new ArrayList<String>(list.length);
         Collections.addAll(elems, list);
@@ -88,7 +92,7 @@ public class Process extends Thread {
 
 
     public void processLine(final String line) {
-        String minute = line.split("\\s+")[0];
+        String minute = line.split("\\s+")[0].substring(0, 16);
 //        String minute = line.split("\\s+")[0];
         if (structure.getActualMinute() == null) {
             changeMinute(minute);

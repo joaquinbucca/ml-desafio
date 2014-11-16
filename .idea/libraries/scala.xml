@@ -15,6 +15,7 @@
       <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scalap.jar!/" />
       <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/test-interface.jar!/" />
       <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/typesafe-config.jar!/" />
+      <root url="jar://$USER_HOME$/lib/scala-2.11.0-M4/lib/scala-compiler.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
