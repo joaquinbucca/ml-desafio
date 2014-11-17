@@ -1,8 +1,6 @@
 import com.mongodb.BasicDBObject;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -28,13 +26,15 @@ public class Process extends Thread {
 //        while (true) {
 //            try {
             String line = null;
-        while ((line = buffer.processLineFromBuffer()) != null)
+        while (true) {
+            while ((line = buffer.processLineFromBuffer()) != null)
                 processLine(line);
+        }
 //            } catch (InterruptedException e) {
 //                e.printStackTrace();
 //            }
 //        }
-        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+//        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
     }
 
     public EntryData understandLine(String line) {
@@ -143,8 +143,8 @@ public class Process extends Thread {
 
     public void processLine(final String line) {
         String minute = line.split("\\s+")[0].substring(0, 16);
-        System.out.println("structure.getCounter() = " + structure.getCounter());
 //        String minute = line.split("\\s+")[0];
+        System.out.println("line = " + line);
         if (structure.getActualMinute() == null) {
             changeMinute(minute);
         }
@@ -165,7 +165,17 @@ public class Process extends Thread {
         // write each line of structure.getConcurrentMap() in text
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter("output.log", "UTF-8");
+            String output= "output.log";
+            File file= new File(output);
+//            writer = new PrintWriter(output, "UTF-8");
+            if ( file.exists() && !file.isDirectory() ) {
+                System.out.println("file.exists() = " + file.exists());
+                writer = new PrintWriter(new FileOutputStream(new File(output), true));
+            }
+            else {
+                writer = new PrintWriter(output);
+            }
+            System.out.println("file = " + file);
             while (iterator.hasNext()) {
                 ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>> entry = iterator.next();
                 Iterator<ConcurrentMap.Entry<Integer, Statistics>> statIt = (entry.getValue().entrySet()).iterator();
@@ -177,8 +187,6 @@ public class Process extends Thread {
             }
             writer.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

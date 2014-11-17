@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c177f08b-45a4-4695-b5ec-f12f28550f48" name="Default" comment="guarda bien en el mapa y pasa a archivo de texto">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/access.log" />
+    <list default="true" id="c177f08b-45a4-4695-b5ec-f12f28550f48" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/output.log" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/mapdb_1_0_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mongo_2_10_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Buffer.class" afterPath="$PROJECT_DIR$/src/Buffer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EntryData.class" afterPath="$PROJECT_DIR$/src/EntryData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.class" afterPath="$PROJECT_DIR$/src/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Process.class" afterPath="$PROJECT_DIR$/src/Process.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Reader.class" afterPath="$PROJECT_DIR$/src/Reader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Statistics.class" afterPath="$PROJECT_DIR$/src/Statistics.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Structure.class" afterPath="$PROJECT_DIR$/src/Structure.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Buffer.java" afterPath="$PROJECT_DIR$/src/Buffer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EntryData.java" afterPath="$PROJECT_DIR$/src/EntryData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Process.java" afterPath="$PROJECT_DIR$/src/Process.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Statistics.java" afterPath="$PROJECT_DIR$/src/Statistics.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Structure.java" afterPath="$PROJECT_DIR$/src/Structure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ml.iml" afterPath="$PROJECT_DIR$/ml.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/access.log" afterPath="$PROJECT_DIR$/src/access.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ml.iws" />
@@ -55,31 +44,18 @@
       <file leaf-file-name="Process.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Process.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3222">
-              <caret line="145" column="79" selection-start-line="145" selection-start-column="79" selection-end-line="145" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="149" max-vertical-offset="3402">
+              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="output.log" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/output.log">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="access.log" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="access.log" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/access.log">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="989982" max-vertical-offset="1980072">
-              <caret line="54999" column="0" selection-start-line="54999" selection-start-column="0" selection-end-line="54999" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.2861035" vertical-offset="302" max-vertical-offset="882">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -108,7 +84,7 @@
       <file leaf-file-name="Structure.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Structure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="356" max-vertical-offset="1116">
+            <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="1512">
               <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
               <folding />
             </state>
@@ -128,23 +104,18 @@
       <file leaf-file-name="Buffer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Buffer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="217" max-vertical-offset="1242">
+            <state vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="1278">
               <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-              <folding>
-                <element signature="e#1577#1578#0" expanded="true" />
-                <element signature="e#1611#1612#0" expanded="true" />
-                <element signature="e#1640#1641#0" expanded="true" />
-                <element signature="e#1668#1669#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Reader.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Reader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Reader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54468805" vertical-offset="73" max-vertical-offset="684">
-              <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="684">
+              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -176,10 +147,11 @@
         <option value="$PROJECT_DIR$/src/Statistics.java" />
         <option value="$PROJECT_DIR$/src/Structure.java" />
         <option value="$PROJECT_DIR$/src/access.txt" />
-        <option value="$PROJECT_DIR$/src/access.log" />
         <option value="$PROJECT_DIR$/src/Buffer.java" />
-        <option value="$PROJECT_DIR$/src/Process.java" />
         <option value="$PROJECT_DIR$/src/Reader.java" />
+        <option value="$PROJECT_DIR$/src/access.log" />
+        <option value="$PROJECT_DIR$/src/Process.java" />
+        <option value="$PROJECT_DIR$/src/output.log" />
       </list>
     </option>
   </component>
@@ -217,8 +189,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -275,6 +245,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -602,7 +574,8 @@
       <workItem from="1415740457498" duration="3696000" />
       <workItem from="1416107628172" duration="5894000" />
       <workItem from="1416147588156" duration="11645000" />
-      <workItem from="1416258406941" duration="2813000" />
+      <workItem from="1416258406941" duration="3127000" />
+      <workItem from="1416262830809" duration="3197000" />
     </task>
     <task id="LOCAL-00001" summary="paso a scala">
       <created>1415273559220</created>
@@ -612,17 +585,21 @@
       <created>1416154574403</created>
       <updated>1416154574403</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="guarda bien en el mapa y pasa a archivo de texto">
+      <created>1416262465203</created>
+      <updated>1416262465203</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106870000" />
+    <option name="totallyTimeSpent" value="110381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="24" width="1309" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.4996041" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287037" sideWeight="0.4996041" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -667,7 +644,8 @@
     </option>
     <MESSAGE value="paso a scala" />
     <MESSAGE value="paso a scala y mejoras en la parte de java" />
-    <option name="LAST_COMMIT_MESSAGE" value="paso a scala y mejoras en la parte de java" />
+    <MESSAGE value="guarda bien en el mapa y pasa a archivo de texto" />
+    <option name="LAST_COMMIT_MESSAGE" value="guarda bien en el mapa y pasa a archivo de texto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1010,25 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/access.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="989982" max-vertical-offset="1980072">
-          <caret line="54999" column="0" selection-start-line="54999" selection-start-column="0" selection-end-line="54999" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/output.log">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Structure.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1332">
@@ -1041,27 +1000,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="217" max-vertical-offset="1242">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#1577#1578#0" expanded="true" />
-            <element signature="e#1611#1612#0" expanded="true" />
-            <element signature="e#1640#1641#0" expanded="true" />
-            <element signature="e#1668#1669#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Process.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="3222">
-          <caret line="145" column="79" selection-start-line="145" selection-start-column="79" selection-end-line="145" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Reader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54468805" vertical-offset="73" max-vertical-offset="684">
-          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="73" max-vertical-offset="684">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Process.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="149" max-vertical-offset="3402">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/output.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15517241" vertical-offset="0" max-vertical-offset="580">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/access.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2861035" vertical-offset="302" max-vertical-offset="882">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
