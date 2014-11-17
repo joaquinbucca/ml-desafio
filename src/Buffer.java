@@ -26,7 +26,8 @@ public class Buffer {
 //            while(added){
 //                if(getListSize() < limit){
 //                    lock.notifyAll();
-                    list.add(line);
+        list.add(line);
+//        notifyAll();
 //                    added = false;
 //                }else{
 //                    System.out.println("reader waiting");

@@ -60,6 +60,66 @@ public class Statistics {
 
     }
 
+    public String getIpFrom() {
+        return ipFrom;
+    }
+
+    public String getIpTo() {
+        return ipTo;
+    }
+
+    public String getMinute() {
+        return minute;
+    }
+
+    public String getNginx() {
+        return nginx;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public int getTotalOcurrencies() {
+        return totalOcurrencies;
+    }
+
+    public float getTotalRequestTime() {
+        return totalRequestTime;
+    }
+
+    public long getTotalRequestBytes() {
+        return totalRequestBytes;
+    }
+
+    public long getTotalBytesSent() {
+        return totalBytesSent;
+    }
+
+    public int getReq10() {
+        return req10;
+    }
+
+    public int getReq50() {
+        return req50;
+    }
+
+    public int getReq100() {
+        return req100;
+    }
+
+    public int getReq300() {
+        return req300;
+    }
+
+    public int getReq1000() {
+        return req1000;
+    }
+
+    public int getReq10000() {
+        return req10000;
+    }
+
     public String getLine() {
         return minute + "\t" + nginx + "\t" + ipFrom + "\t" + ipTo + "\t" + status + "\t" + totalOcurrencies + "\t" + totalRequestTime + "\t" + totalRequestBytes + "\t" + totalBytesSent + "\t" + req10 + "\t" + req50 + "\t" + req100 + "\t" + req300 + "\t" + req1000 + "\t" + req10000;
     }

@@ -1,3 +1,8 @@
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
+
+import java.net.UnknownHostException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -11,6 +16,27 @@ public class Structure {
     private int counter;
     private String actualMinute;
     private ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map= new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>();
+    private MongoClient mongo;
+    private DB db;
+    private DBCollection collection;
+
+    public DB getDb() {
+        return db;
+    }
+
+    public DBCollection getCollection() {
+        return collection;
+    }
+
+    public void initDB(){
+        try {
+            mongo= new MongoClient("localhost", 27017);
+            db = mongo.getDB("testDB");
+            collection= db.getCollection("logs");
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+    }
 
     private Structure(){
         if (structure != null){

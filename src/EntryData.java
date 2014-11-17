@@ -74,7 +74,7 @@ public class EntryData {
     }
 
     public String getMinute() {
-        return time;
+        return time.substring(0, 16);
     }
 
     public String getIpFrom(){
@@ -86,7 +86,7 @@ public class EntryData {
     }
 
     public String getIpTo(){
-        return upstream != null ? upstream : upstrea_address;
+        return !upstream.equals("-") ? upstream : upstrea_address;
     }
 
     public int getStatus(){

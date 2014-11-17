@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        Structure.getInstance().initDB();
         routine(input);
 //        todo: 50mil lineas en 2 segundos masomenos, tengo q hacer que despues del cat siga con tail -f , guardarlo en base
         //todo: de datos, ver q no reemplaze el archivo sino q le agregue lineas, y despues ver de hacerlo un poco mas eficiente

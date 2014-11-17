@@ -1,3 +1,5 @@
+import com.mongodb.BasicDBObject;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -57,15 +59,17 @@ public class Process extends Thread {
         structure.increment();
         ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map = structure.getMap();
         ConcurrentMap<Integer, Statistics> statisticsConcurrentMap = map.get(entryData.getIpFromHashed());
-        if (statisticsConcurrentMap == null) {
+        Statistics statistics;
+        if (statisticsConcurrentMap == null) { // si para la ip de donde viene tdvia no hay nada
             statisticsConcurrentMap = new ConcurrentHashMap<Integer, Statistics>();
-            Statistics statistics = new Statistics(entryData);
+            statistics = new Statistics(entryData);
             statistics.update(entryData);
             statisticsConcurrentMap.put(entryData.getIpToHashed(), statistics);
             map.put(entryData.getIpFromHashed(), statisticsConcurrentMap);
-        } else {
-            Statistics statistics = statisticsConcurrentMap.get(entryData.getIpToHashed());
-            if (statistics == null) {
+            structure.setMap(map);
+        } else { // si ya habia para la ip de donde viene
+            statistics = statisticsConcurrentMap.get(entryData.getIpToHashed());
+            if (statistics == null) { // si para la combinacion de ips no habia nada
                 statistics = new Statistics(entryData);
             }
             statistics.update(entryData);
@@ -73,6 +77,52 @@ public class Process extends Thread {
             map.put(entryData.getIpFromHashed(), statisticsConcurrentMap);
             structure.setMap(map);
         }
+
+//        try {
+//            Mongo mongo= new Mongo("localhost", 27017);
+//            DB db = mongo.getDB("testDB");
+//            DBCollection collection= db.getCollection("logs");
+//            BasicDBObject query= getSearchDBObject(statistics);
+//            BasicDBObject newObj= getDBObjectFromStatistics(statistics);
+//            if(structure.getCollection().find(query).hasNext()){
+//                System.out.println("asdas");
+//                structure.getCollection().update(query, newObj);
+//            } else {
+//                System.out.println("asdas1");
+//                structure.getCollection().insert(newObj);
+//            }
+//        } catch (UnknownHostException e) {
+//            System.out.println("e = " + e);
+//            e.printStackTrace();
+//        }
+    }
+
+    private BasicDBObject getSearchDBObject(Statistics statistics){
+        BasicDBObject object= new BasicDBObject();
+        object.append("minute", statistics.getMinute());
+        object.append("ipFrom", statistics.getIpFrom());
+        object.append("ipTo", statistics.getIpTo());
+        return object;
+    }
+
+    private BasicDBObject getDBObjectFromStatistics(Statistics statistics) {
+        BasicDBObject object= new BasicDBObject();
+        object.append("minute", statistics.getMinute());
+        object.append("ipFrom", statistics.getIpFrom());
+        object.append("ipTo", statistics.getIpTo());
+        object.append("nginx", statistics.getNginx());
+        object.append("status", statistics.getStatus());
+        object.append("totalOcurrencies", statistics.getTotalOcurrencies());
+        object.append("totalRequestTime", statistics.getTotalRequestTime());
+        object.append("totalRequestBytes", statistics.getTotalRequestBytes());
+        object.append("totalBytesSent", statistics.getTotalBytesSent());
+        object.append("req10", statistics.getReq10());
+        object.append("req50", statistics.getReq50());
+        object.append("req100", statistics.getReq100());
+        object.append("req300", statistics.getReq300());
+        object.append("req1000", statistics.getReq1000());
+        object.append("req10000", statistics.getReq10000());
+        return object;
     }
 
     public List<String> splitString(String wordToSplit, char splitBy){
@@ -93,6 +143,7 @@ public class Process extends Thread {
 
     public void processLine(final String line) {
         String minute = line.split("\\s+")[0].substring(0, 16);
+        System.out.println("structure.getCounter() = " + structure.getCounter());
 //        String minute = line.split("\\s+")[0];
         if (structure.getActualMinute() == null) {
             changeMinute(minute);
