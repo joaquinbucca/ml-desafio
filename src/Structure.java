@@ -13,7 +13,6 @@ public class Structure {
 
     private static Structure structure;
 
-    private int counter;
     private String actualMinute;
     private ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map= new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>();
     private MongoClient mongo;
@@ -62,14 +61,6 @@ public class Structure {
 
     public ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> getMap() {
         return map;
-    }
-
-    public int getCounter(){
-        return counter;
-    }
-
-    public void increment(){
-        counter++;
     }
 
     public void setMap(ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map) {

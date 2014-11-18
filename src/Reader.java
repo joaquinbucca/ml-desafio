@@ -15,8 +15,7 @@ public class Reader extends Thread {
 
     @Override
     public void run() {
-        String line = null;
-//        while (true){
+        String line;
             try {
                 while ((line = input.readLine()) != null) {
                     if(!line.equals(" ")){
@@ -27,6 +26,5 @@ public class Reader extends Thread {
             }catch (Exception e){
                 e.printStackTrace();
             }
-//        }
     }
 }

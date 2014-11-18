@@ -8,13 +8,10 @@ import scala.io.Source
 
 object MainClass {
   def main(args: Array[String]) {
-//    println("Hello, world!")
     println("System.currentTimeMillis() = " + System.currentTimeMillis())
     for (ln <- Source.stdin.getLines()){
       val line= ln.replaceAll(", ", ",")
       RequestManager.sendRequest(line)
     }
-//    println("System.currentTimeMillis() = " + System.currentTimeMillis())
-//    println("RequestManager.map.size = " + RequestManager.map.size)
   }
 }

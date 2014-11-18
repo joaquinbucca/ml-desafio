@@ -35,7 +35,6 @@ public class LineProcessor extends Thread {
         Collections.addAll(elems, list);
         if (elems.size() == 1) {
             System.out.println(System.currentTimeMillis());
-            System.out.println(structure.getCounter());
             System.out.println("line = " + line);
         }
         return new EntryData(elems);
@@ -43,7 +42,6 @@ public class LineProcessor extends Thread {
 
 
     public void saveInConcurrentMap(EntryData entryData) {
-        structure.increment();
         ConcurrentMap<Integer, ConcurrentMap<Integer, Statistics>> map = structure.getMap();
         ConcurrentMap<Integer, Statistics> statisticsConcurrentMap = map.get(entryData.getIpFromHashed());
         Statistics statistics;
@@ -126,7 +124,6 @@ public class LineProcessor extends Thread {
         if (!structure.getActualMinute().equals(minute)) {
             changeMinute(minute);
             saveInDBAndWriteInFile();
-            structure.setMap(new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>());
         }
         saveInConcurrentMap(understandLine(line));
     }
@@ -137,18 +134,17 @@ public class LineProcessor extends Thread {
 
     private void saveInDBAndWriteInFile() {
         Iterator<ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>>> iterator = ((structure.getMap()).entrySet()).iterator();
+        structure.setMap(new ConcurrentHashMap<Integer, ConcurrentMap<Integer, Statistics>>());
         // write each line of structure.getConcurrentMap() in text
         PrintWriter writer;
         try {
             String output = "output.log";
             File file = new File(output);
-//            writer = new PrintWriter(output, "UTF-8");
             if (file.exists() && !file.isDirectory()) {
                 writer = new PrintWriter(new FileOutputStream(new File(output), true));
             } else {
                 writer = new PrintWriter(output);
             }
-            System.out.println("antes = " + System.currentTimeMillis());
             while (iterator.hasNext()) {
                 ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>> entry = iterator.next();
                 for (ConcurrentMap.Entry<Integer, Statistics> statEntry : (entry.getValue().entrySet())) {
@@ -159,10 +155,6 @@ public class LineProcessor extends Thread {
                 }
             }
             writer.close();
-            System.out.println(" Termine de escribir todooooo ");
-            System.out.println("this.getName() = " + this.getName());
-            System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
-            System.out.println("structure = " + structure.getActualMinute());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

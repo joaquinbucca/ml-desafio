@@ -61,10 +61,6 @@ class Processer(id: String) extends Actor {
     secondMap += data.getIpTo -> statistics
     RequestManager.map += data.getIpFrom -> secondMap
     RequestManager.count = RequestManager.count + 1
-//    println("RequestManager.count = " + RequestManager.count)
-    if(RequestManager.count > 54900){
-      println("System.currentTimeMillis() = " + System.currentTimeMillis())
-    }
   }
 
   override def receive: Receive = {

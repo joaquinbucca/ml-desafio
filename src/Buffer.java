@@ -23,12 +23,4 @@ public class Buffer {
     public String processLineFromBuffer() {
         return list.poll();
     }
-
-    public int getListSize() {
-        return list.size();
-    }
-
-    public int getLimit() {
-        return limit;
-    }
 }
