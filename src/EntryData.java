@@ -35,6 +35,8 @@ public class EntryData {
     private String ds ;
     private String nginx_pool ;
     private String x_request_id ;
+    private int ipFromHashed;
+    private int ipToHashed;
 
 
     public EntryData(List<String> elems) {
@@ -71,6 +73,8 @@ public class EntryData {
         this.ds = elems.get(25);
 //        this.nginx_pool = elems.get(27);
         this.x_request_id = elems.get(26);
+        this.ipFromHashed= getIpFrom().hashCode();
+        this.ipToHashed= getIpTo().hashCode();
     }
 
     public String getMinute() {
@@ -107,10 +111,10 @@ public class EntryData {
 
 
     public int getIpToHashed() {
-        return getIpTo().hashCode();
+        return ipToHashed;
     }
 
     public int getIpFromHashed() {
-        return getIpFrom().hashCode();
+        return ipFromHashed;
     }
 }

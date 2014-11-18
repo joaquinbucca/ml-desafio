@@ -1,51 +1,38 @@
 import com.mongodb.BasicDBObject;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by joaquin on 30/10/14.
  */
-public class Process extends Thread {
+public class LineProcessor extends Thread {
 
     private Structure structure;
     private Buffer buffer;
 
-    public Process(Buffer buffer) {
+    public LineProcessor(Buffer buffer) {
         structure = Structure.getInstance();
         this.buffer = buffer;
     }
 
     @Override
     public void run() {
-//        while (true) {
-//            try {
-            String line = null;
+        String line;
         while (true) {
             while ((line = buffer.processLineFromBuffer()) != null)
                 processLine(line);
         }
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
 //        System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
     }
 
     public EntryData understandLine(String line) {
         line = line.replaceAll(", ", ",");
-//        System.out.println("line = " + line);
-        String[] list= line.split("\\s+");
+        String[] list = line.split("\\s+");
         List<String> elems = new ArrayList<String>(list.length);
         Collections.addAll(elems, list);
-        for (String elem : elems) {
-            if (elem.equals("-")) elem = null;
-        }
         if (elems.size() == 1) {
             System.out.println(System.currentTimeMillis());
             System.out.println(structure.getCounter());
@@ -78,27 +65,17 @@ public class Process extends Thread {
             structure.setMap(map);
         }
 
-//        try {
-//            Mongo mongo= new Mongo("localhost", 27017);
-//            DB db = mongo.getDB("testDB");
-//            DBCollection collection= db.getCollection("logs");
-//            BasicDBObject query= getSearchDBObject(statistics);
-//            BasicDBObject newObj= getDBObjectFromStatistics(statistics);
-//            if(structure.getCollection().find(query).hasNext()){
-//                System.out.println("asdas");
-//                structure.getCollection().update(query, newObj);
-//            } else {
-//                System.out.println("asdas1");
-//                structure.getCollection().insert(newObj);
-//            }
-//        } catch (UnknownHostException e) {
-//            System.out.println("e = " + e);
-//            e.printStackTrace();
+//        BasicDBObject query = getSearchDBObject(statistics);
+//        BasicDBObject newObj = getDBObjectFromStatistics(statistics);
+//        if (structure.getCollection().find(query).hasNext()) {
+//            structure.getCollection().update(query, newObj);
+//        } else {
+//            structure.getCollection().insert(newObj);
 //        }
     }
 
-    private BasicDBObject getSearchDBObject(Statistics statistics){
-        BasicDBObject object= new BasicDBObject();
+    private BasicDBObject getSearchDBObject(Statistics statistics) {
+        BasicDBObject object = new BasicDBObject();
         object.append("minute", statistics.getMinute());
         object.append("ipFrom", statistics.getIpFrom());
         object.append("ipTo", statistics.getIpTo());
@@ -106,7 +83,7 @@ public class Process extends Thread {
     }
 
     private BasicDBObject getDBObjectFromStatistics(Statistics statistics) {
-        BasicDBObject object= new BasicDBObject();
+        BasicDBObject object = new BasicDBObject();
         object.append("minute", statistics.getMinute());
         object.append("ipFrom", statistics.getIpFrom());
         object.append("ipTo", statistics.getIpTo());
@@ -125,7 +102,7 @@ public class Process extends Thread {
         return object;
     }
 
-    public List<String> splitString(String wordToSplit, char splitBy){
+    public List<String> splitString(String wordToSplit, char splitBy) {
         List<String> list = new ArrayList<String>();
         int pos = 0, end;
         while ((end = wordToSplit.indexOf(splitBy, pos)) >= 0) {
@@ -135,16 +112,14 @@ public class Process extends Thread {
         return list;
     }
 
-    public String getMinute(String line){
-        int pos= 0;
+    public String getMinute(String line) {
+        int pos = 0;
         return line.substring(pos, line.indexOf(' ', pos));
     }
 
 
     public void processLine(final String line) {
         String minute = line.split("\\s+")[0].substring(0, 16);
-//        String minute = line.split("\\s+")[0];
-        System.out.println("line = " + line);
         if (structure.getActualMinute() == null) {
             changeMinute(minute);
         }
@@ -163,29 +138,31 @@ public class Process extends Thread {
     private void saveInDBAndWriteInFile() {
         Iterator<ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>>> iterator = ((structure.getMap()).entrySet()).iterator();
         // write each line of structure.getConcurrentMap() in text
-        PrintWriter writer = null;
+        PrintWriter writer;
         try {
-            String output= "output.log";
-            File file= new File(output);
+            String output = "output.log";
+            File file = new File(output);
 //            writer = new PrintWriter(output, "UTF-8");
-            if ( file.exists() && !file.isDirectory() ) {
-                System.out.println("file.exists() = " + file.exists());
+            if (file.exists() && !file.isDirectory()) {
                 writer = new PrintWriter(new FileOutputStream(new File(output), true));
-            }
-            else {
+            } else {
                 writer = new PrintWriter(output);
             }
-            System.out.println("file = " + file);
+            System.out.println("antes = " + System.currentTimeMillis());
             while (iterator.hasNext()) {
                 ConcurrentMap.Entry<Integer, ConcurrentMap<Integer, Statistics>> entry = iterator.next();
-                Iterator<ConcurrentMap.Entry<Integer, Statistics>> statIt = (entry.getValue().entrySet()).iterator();
-                while (statIt.hasNext()) {
-                    ConcurrentMap.Entry<Integer, Statistics> statEntry = statIt.next();
+                for (ConcurrentMap.Entry<Integer, Statistics> statEntry : (entry.getValue().entrySet())) {
                     String lineToWrite = statEntry.getValue().getLine();
                     writer.println(lineToWrite);
+                    BasicDBObject newObj = getDBObjectFromStatistics(statEntry.getValue());
+                    structure.getCollection().insert(newObj);
                 }
             }
             writer.close();
+            System.out.println(" Termine de escribir todooooo ");
+            System.out.println("this.getName() = " + this.getName());
+            System.out.println("System.currentTimeMillis() = " + System.currentTimeMillis());
+            System.out.println("structure = " + structure.getActualMinute());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
